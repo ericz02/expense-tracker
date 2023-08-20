@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Transaction: Identifiable {
+struct Transaction: Identifiable, Decodable {
     let id: Int
     let date: String
     let institution: String
@@ -25,6 +25,10 @@ struct Transaction: Identifiable {
     
     var dateParsed: Date {
         return date.dateParsed()
+    }
+    
+    var signedAmount: Double {
+        return type == TransactionType.credit.rawValue ? amount : -amount
     }
 }
 
