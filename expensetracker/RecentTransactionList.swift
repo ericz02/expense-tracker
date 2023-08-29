@@ -31,6 +31,14 @@ struct RecentTransactionList: View {
                 }
             }
             .padding(.top)
+            
+            // MARK: Recent Transaction List
+            ForEach(Array(transactionListVM.transactions.prefix(5).enumerated()), id: \.element) { index, transaction in
+                TransactionRow(transaction: transaction)
+                
+                Divider()
+                    .opacity(index == 4 ? 0 : 1)
+            }
         }
         .padding()
         .background(Color.systemBackground)
